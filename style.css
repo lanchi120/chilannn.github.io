@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    font-family: 'Pacifico', cursive; /* Font chữ xì-tin bé thích */
+    overflow: hidden; /* Ẩn thanh cuộn nếu có */
+}
+
+/* Các trang ẩn/hiện */
+.page {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.page.active {
+    display: flex;
+}
+
+/* Trang chào mừng (màn hình đầu tiên) */
+#welcome-page {
+    background-color: white; /* Nền trắng */
+    position: relative;
+    overflow: hidden; /* Để đám mây không bị tràn ra */
+}
+
+/* Hiệu ứng đám mây */
+.cloud-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150"><path fill="%23f0f0f0" d="M100,50c-27.6,0-50,22.4-50,50s22.4,50,50,50h100c27.6,0,50-22.4,50-50s-22.4-50-50-50c-11.4,0-21.8,3.8-30.2,10.2L100,50z"/></svg>'); /* Ảnh đám mây SVG đơn giản */
+    background-size: 150px; /* Kích thước đám mây */
+    animation: moveClouds 30s linear infinite; /* Hiệu ứng đám mây di chuyển */
+    opacity: 0.8;
+}
+
+@keyframes moveClouds {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+}
+
+
+.pink-text {
+    color: #FF69B4; /* Màu hồng xinh xắn */
+    font-size: 3em; /* Kích thước chữ lớn */
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Hiệu ứng bóng chữ nhẹ nhàng */
+}
+
+.main-title {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+/* Nút trả lời */
+.buttons-container {
+    display: flex;
+    gap: 30px; /* Khoảng cách giữa 2 nút */
+}
+
+.answer-button {
+    background-color: black; /* Nền đen */
+    color: white; /* Chữ trắng */
+    border: 3px solid white; /* Viền trắng */
+    padding: 15px 40px;
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 10px; /* Bo tròn góc */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+    font-family: 'Pacifico', cursive; /* Font chữ đồng bộ */
+    outline: none; /* Bỏ viền khi click */
+}
+
+.answer-button:hover {
+    background-color: #333; /* Đổi màu khi rê chuột */
+    transform: scale(1.05); /* Phóng to nhẹ khi rê chuột */
+    box-shadow: 0 0 15px rgba(255,255,255,0.7); /* Hiệu ứng phát sáng nhẹ */
+}
+
+.answer-button:active {
+    transform: scale(0.95); /* Thu nhỏ khi click */
+    background-color: #555;
+}
+
+/* Trang khi nhấn "cs" */
+#love-page {
+    background-color: #FF69B4; /* Nền hồng */
+    color: white; /* Chữ trắng */
+}
+
+.love-text {
+    font-size: 4em;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Trang khi nhấn "ko" */
+#angry-page {
+    background-color: black; /* Nền đen */
+    color: white; /* Chữ trắng */
+}
+
+.angry-text {
+    font-size: 4em;
+    color: #FF0000; /* Chữ màu đỏ cho sự giận dữ */
+    margin-bottom: 30px;
+    animation: pulseRed 1s infinite alternate; /* Hiệu ứng nhấp nháy đỏ */
+}
+
+@keyframes pulseRed {
+    from { color: #FF0000; }
+    to { color: #FFA07A; }
+}
+
+.angry-images {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Cho ảnh xuống dòng nếu màn hình nhỏ */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.angry-images img {
+    max-width: 150px; /* Kích thước ảnh tức giận */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255,0,0,0.5); /* Bóng đỏ */
+    transition: transform 0.2s ease;
+}
+
+.angry-images img:hover {
+    transform: scale(1.1) rotate(5deg); /* Hiệu ứng khi rê chuột vào ảnh */
+}
+
+/* Đảm bảo toàn màn hình trên mobile */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3em;
+    }
+    .question {
+        font-size: 2em;
+    }
+    .answer-button {
+        font-size: 1.5em;
+        padding: 12px 30px;
+    }
+    .love-text, .angry-text {
+        font-size: 3em;
+    }
+    .angry-images img {
+        max-width: 100px;
+    }
+}
